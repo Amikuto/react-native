@@ -14,12 +14,14 @@ import {Avatar, ListItem} from "@rneui/themed";
 import axios from "axios";
 
 import * as SQLite from 'expo-sqlite'
+import CheckBox from "expo-checkbox";
 const db = SQLite.openDatabase('tododb')
 
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 
 const Todo = ({navigation, route}) => {
+  const [doneNewTodo, setDoneNewTodo] = useState(false);
   const [currentTodo, setTodo] = useState("");
   const [done, setDone] = useState([]);
   const [notDone, setNotDone] = useState([]);
@@ -38,7 +40,7 @@ const Todo = ({navigation, route}) => {
     db.transaction(tx => {
       tx.executeSql(
           "INSERT INTO todo (todoId, text, done) values (?, ?, ?)",
-          [id, currentTodo, false],
+          [id, currentTodo, doneNewTodo],
           () => {
             console.log("suc fetching")
           },
@@ -109,15 +111,16 @@ const Todo = ({navigation, route}) => {
   const keyExtractor = (item, index) => index.toString()
 
   const renderItem = ({ item }) => (
-      // console.log(!!item["done"]),
-      <TouchableHighlight
-          style={[styles.listItem, !!item["done"] ? {backgroundColor: "green"} : {backgroundColor: "white"}]}
-          onPress={() => changeTodoStatus(item)}
-          onLongPress={() => deleteTodo(item)}
-          underlayColor={!!item["done"] ? "green" : "white"}
-      >
-        <Text style={[styles.listItemText, !!item["done"] ? {color: "white"} : {color: "black"}]}>{item["text"]}</Text>
-      </TouchableHighlight >
+      <View>
+        <TouchableHighlight
+            style={[styles.listItem, !!item["done"] ? {backgroundColor: "green"} : {backgroundColor: "white"}]}
+            onPress={() => changeTodoStatus(item)}
+            onLongPress={() => deleteTodo(item)}
+            underlayColor={!!item["done"] ? "green" : "white"}
+        >
+          <Text style={[styles.listItemText, !!item["done"] ? {color: "white"} : {color: "black"}]}>{item["text"]}</Text>
+        </TouchableHighlight >
+      </View>
   )
 
   return (
@@ -129,6 +132,18 @@ const Todo = ({navigation, route}) => {
             onChangeText={(todoText) => setTodo(todoText)}
             value={currentTodo}
         />
+        <View style={styles.chin}>
+          <CheckBox
+              value={doneNewTodo}
+              onValueChange={(prevValue) => setDoneNewTodo(!prevValue)}
+              color={doneNewTodo ? "#4630EB" : "black"}
+              style={styles.checkbox}
+          />
+          <Text style={styles.checkboxText}>
+            Уже выполнено?
+          </Text>
+        </View>
+
         <Button title={"Добавить!"} onPress={addData}></Button>
         <View style={styles.todoContainer}>
           <View style={styles.todoBlock}>
@@ -165,6 +180,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 40,
     margin: 20,
+  },
+  chin: {
+    alignItems: "center",
+    margin: 10
+  },
+  checkboxText: {
+
   },
   input: {
     height: 40,
