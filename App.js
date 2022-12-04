@@ -11,6 +11,7 @@ import PhoneCall from "./pages/contacts/PhoneCall";
 import VideoCall from "./pages/contacts/VideoCall";
 import Todo from "./pages/todo/Todo";
 import TodoWelcome from "./pages/todo/TodoWelcome";
+import MagicBall from "./pages/magicball/MagicBall";
 
 const Navigator = createNativeStackNavigator();
 
@@ -55,6 +56,10 @@ const Main = () => {
                 name="TodoList"
                 component={Todo}
                 options={{ title: 'Task13: TODO' }} />
+            <Navigator.Screen
+                name="Task14"
+                component={MagicBall}
+                options={{ title: 'Task14: MagicBall' }} />
           </Navigator.Navigator>
       </NavigationContainer>
   );
@@ -85,6 +90,12 @@ const HomeScreen = ({ navigation }) => {
             title="Goto task 13 (Todo)"
             onPress={() =>
                 navigation.navigate('Task13')
+            }
+        />
+        <Button
+            title="Goto task 14 (MagicBall)"
+            onPress={() =>
+                navigation.navigate('Task14')
             }
         />
       </View>

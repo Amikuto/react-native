@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {TouchableOpacity, View, Text} from "react-native";
 
 import * as SQLite from 'expo-sqlite'
-const db = SQLite.openDatabase('tododb')
+const db = SQLite.openDatabase('tododb2')
 
 const TodoWelcome = ({navigation, route}) => {
 

@@ -8,14 +8,14 @@ import {
   SafeAreaView,
   FlatList,
   TouchableOpacity,
-  Button, TouchableHighlight
+  Button, TouchableHighlight, ScrollView
 } from "react-native";
 import {Avatar, ListItem} from "@rneui/themed";
 import axios from "axios";
 
 import * as SQLite from 'expo-sqlite'
 import CheckBox from "expo-checkbox";
-const db = SQLite.openDatabase('tododb')
+const db = SQLite.openDatabase('tododb2')
 
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
@@ -39,8 +39,8 @@ const Todo = ({navigation, route}) => {
     const id = done.length + notDone.length + 1
     db.transaction(tx => {
       tx.executeSql(
-          "INSERT INTO todo (todoId, text, done) values (?, ?, ?)",
-          [id, currentTodo, doneNewTodo],
+          "INSERT INTO todo (text, done) values (?, ?)",
+          [currentTodo, false],
           () => {
             console.log("suc fetching")
           },
@@ -135,7 +135,7 @@ const Todo = ({navigation, route}) => {
         <View style={styles.chin}>
           <CheckBox
               value={doneNewTodo}
-              onValueChange={(prevValue) => setDoneNewTodo(!prevValue)}
+              onValueChange={() => setDoneNewTodo(!doneNewTodo)}
               color={doneNewTodo ? "#4630EB" : "black"}
               style={styles.checkbox}
           />
@@ -145,27 +145,34 @@ const Todo = ({navigation, route}) => {
         </View>
 
         <Button title={"Добавить!"} onPress={addData}></Button>
-        <View style={styles.todoContainer}>
-          <View style={styles.todoBlock}>
-            <Text style={styles.todoBlockText}>Что сделать</Text>
-            <FlatList
-                style={styles.list}
-                keyExtractor={keyExtractor}
-                data={notDone}
-                renderItem={renderItem}
-            />
-          </View>
-          <View style={styles.todoBlock}>
-            <Text style={styles.todoBlockText}>Завершенные</Text>
-            <FlatList
-                style={styles.list}
-                keyExtractor={keyExtractor}
-                data={done}
-                renderItem={renderItem}
-            />
-          </View>
-        </View>
 
+        <ScrollView nestedScrollEnabled={true} style={{ width: window.width}} >
+          <View>
+            <ScrollView horizontal={true} style={{ width: window.width}}>
+
+              <View style={styles.todoContainer}>
+                <View style={styles.todoBlock}>
+                  <Text style={styles.todoBlockText}>Что сделать</Text>
+                  <FlatList
+                      style={styles.list}
+                      keyExtractor={keyExtractor}
+                      data={notDone}
+                      renderItem={renderItem}
+                  />
+                </View>
+                <View style={styles.todoBlock}>
+                  <Text style={styles.todoBlockText}>Завершенные</Text>
+                  <FlatList
+                      style={styles.list}
+                      keyExtractor={keyExtractor}
+                      data={done}
+                      renderItem={renderItem}
+                  />
+                </View>
+              </View>
+            </ScrollView>
+          </View>
+        </ScrollView>
       </SafeAreaView>
   )
 }

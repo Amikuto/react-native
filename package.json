@@ -27,7 +27,9 @@
     "react-native": "0.69.6",
     "react-native-elements": "^3.4.2",
     "react-native-web": "~0.18.7",
-    "expo-checkbox": "~2.2.0"
+    "expo-checkbox": "~2.2.0",
+    "expo-constants": "~13.2.4",
+    "expo-sensors": "~11.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
