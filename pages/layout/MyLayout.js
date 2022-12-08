@@ -58,6 +58,33 @@ const MyLayout = () => {
                   </DiscoverItem4>
                 </DiscoverItems>
               </DiscoverContainer>
+              <DiscoverContainer>
+                <Text style={[styles.textWhite]}>Some stuff</Text>
+
+                <DiscoverItems>
+                  <DiscoverItem1>
+                    <Image source={require("./images/yoga.jpg")} style={styles.itemImage}/>
+                    <Text style={[styles.textWhite, styles.discoverItemText]}>Handball</Text>
+                  </DiscoverItem1>
+
+                  <DiscoverItem2>
+                    <Image source={require("./images/handball.jpg")} style={styles.itemImage}/>
+                    <Text style={[styles.textWhite, styles.discoverItemText]}>Yoga</Text>
+                  </DiscoverItem2>
+                </DiscoverItems>
+
+                <DiscoverItems>
+                  <DiscoverItem3>
+                    <Image source={require("./images/swim.jpg")} style={styles.itemImage}/>
+                    <Text style={[styles.textWhite, styles.discoverItemText]}>Swimming</Text>
+                  </DiscoverItem3>
+
+                  <DiscoverItem4>
+                    <Image source={require("./images/workout.jpg")} style={styles.itemImage}/>
+                    <Text style={[styles.textWhite, styles.discoverItemText]}>Workout</Text>
+                  </DiscoverItem4>
+                </DiscoverItems>
+              </DiscoverContainer>
             </Body>
             <Divider/>
             {/*<Footer>*/}
@@ -66,11 +93,11 @@ const MyLayout = () => {
           </ScrollView>
           <View>
             <Footer>
-              <Image source={require("./images/icons8-home.png")} style={{backgroundColor: "#860FA2"}}/>
-              <Image source={require("./images/icons8-bic.png")}/>
-              <Image source={require("./images/icons8-plus.png")}/>
-              <Image source={require("./images/icons8-eat.png")}/>
-              <Image source={require("./images/icons8-map.png")}/>
+              <Image source={require("./images/icons8-home.png")} style={styles.footerIcon}/>
+              <Image source={require("./images/icons8-bic.png")} style={styles.footerIcon}/>
+              <Image source={require("./images/icons8-plus.png")} style={styles.footerIcon}/>
+              <Image source={require("./images/icons8-eat.png")} style={styles.footerIcon}/>
+              <Image source={require("./images/icons8-map.png")} style={styles.footerIcon}/>
             </Footer>
           </View>
         </LinearGradient>
@@ -148,12 +175,12 @@ const Body = styled.View`
 `
 
 const Footer = styled.View`
-  background-color: #250c20;
+  background-color: rgba(37, 12, 32, 0.29);
   height: 100px;
   width: 100%;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  //flex-wrap: nowrap;
 `
 
 const Divider = styled.View`
@@ -185,6 +212,16 @@ const styles = StyleSheet.create({
     height: 20,
     width: 20,
     borderRadius: 50,
+  },
+  footerIcon: {
+    // width: 60,
+    maxWidth: "100%",
+    maxHeight: "100%",
+    width: 60,
+    height: "auto",
+    // backgroundColor: "#FFFFFF",
+    margin: 10,
+    padding: 10,
   }
 })
 

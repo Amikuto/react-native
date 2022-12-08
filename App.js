@@ -13,6 +13,7 @@ import Todo from "./pages/todo/Todo";
 import TodoWelcome from "./pages/todo/TodoWelcome";
 import MagicBall from "./pages/magicball/MagicBall";
 import MyLayout from "./pages/layout/MyLayout";
+import MyLayout2 from "./pages/layoutComp/MyLayout2";
 
 const Navigator = createNativeStackNavigator();
 
@@ -65,6 +66,10 @@ const Main = () => {
                 name="CSS"
                 component={MyLayout}
                 options={{ title: 'Task16: CSS' }} />
+              <Navigator.Screen
+                  name="CSS2"
+                  component={MyLayout2}
+                  options={{ title: 'Task17: CSS2' }} />
           </Navigator.Navigator>
       </NavigationContainer>
   );
@@ -109,6 +114,12 @@ const HomeScreen = ({ navigation }) => {
                 navigation.navigate('CSS')
             }
         />
+          <Button
+              title="Goto task 17 (CSS2)"
+              onPress={() =>
+                  navigation.navigate('CSS2')
+              }
+          />
       </View>
   );
 };
