@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#30BA8F",
   },
   image: {
-    height: window.height * 0.5,
-    width: window.width,
+    height: screen.height * 0.5,
+    width: screen.width,
     padding: 10,
   },
 });
