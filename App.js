@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {Button, Platform, Text, View} from "react-native";
+import {Button, Platform, Text, View, StyleSheet} from "react-native";
 
 import Giphy from "./pages/Giphy";
 import Material from "./pages/Material";
@@ -14,6 +14,9 @@ import TodoWelcome from "./pages/todo/TodoWelcome";
 import MagicBall from "./pages/magicball/MagicBall";
 import MyLayout from "./pages/layout/MyLayout";
 import MyLayout2 from "./pages/layoutComp/MyLayout2";
+import News from "./pages/news/News";
+import NewsHeader from "./pages/news/NewsHeader";
+import Welcome from "./pages/ffstore/components/Welcome";
 
 const Navigator = createNativeStackNavigator();
 
@@ -66,10 +69,20 @@ const Main = () => {
                 name="CSS"
                 component={MyLayout}
                 options={{ title: 'Task16: CSS' }} />
-              <Navigator.Screen
-                  name="CSS2"
-                  component={MyLayout2}
-                  options={{ title: 'Task17: CSS2' }} />
+            <Navigator.Screen
+                name="CSS2"
+                component={MyLayout2}
+                options={{ title: 'Task17: CSS2' }} />
+            <Navigator.Screen
+                name="Task18"
+                component={News}
+                options={{ header: () => <NewsHeader/> }}
+            />
+            <Navigator.Screen
+                name="Task19"
+                component={Welcome}
+                options={{ title: 'Task19: FastFoodStore' }}
+            />
           </Navigator.Navigator>
       </NavigationContainer>
   );
@@ -77,7 +90,7 @@ const Main = () => {
 
 const HomeScreen = ({ navigation }) => {
   return (
-      <View>
+      <View style={styles.container}>
         <Button
             title="Goto task 9 (MaterialUI)"
             onPress={() =>
@@ -114,12 +127,24 @@ const HomeScreen = ({ navigation }) => {
                 navigation.navigate('CSS')
             }
         />
-          <Button
-              title="Goto task 17 (CSS2)"
-              onPress={() =>
-                  navigation.navigate('CSS2')
-              }
-          />
+        <Button
+            title="Goto task 17 (CSS2)"
+            onPress={() =>
+                navigation.navigate('CSS2')
+            }
+        />
+        <Button
+            title="Goto task 18 (News)"
+            onPress={() =>
+                navigation.navigate('Task18')
+            }
+        />
+        <Button
+            title="Goto task 19 (Вкусно и точка)"
+            onPress={() =>
+                navigation.navigate('Task19')
+            }
+        />
       </View>
   );
 };
@@ -139,3 +164,16 @@ export default function App() {
       Platform.OS === "android" ? <Main /> : <Main />
   )
 }
+
+const styles = StyleSheet.create({
+  button: {
+    margin: 10
+  },
+  container: {
+    padding: 100,
+    flex: 1,
+    justifyContent: "space-evenly",
+    alignSelf: "center",
+
+  }
+})
