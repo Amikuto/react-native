@@ -9,7 +9,7 @@ const Popular = () => {
         <Text
             style={{fontSize: SIZES.h1, fontWeight: 'bold', color: COLORS.white}}
         >
-          Popular
+          Популярное
         </Text>
         <View
             style={{
